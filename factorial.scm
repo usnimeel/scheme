@@ -8,11 +8,11 @@
   )
 )
 
-(display factorial(0))  ; return 0
+(display (factorial 0))  ; return 0
 (newline)
-(display factorial(1))  ; return 1
+(display (factorial 1))  ; return 1
 (newline)
-(display factorial(3))  ; return 3 * 2 * 1 = 6
+(display (factorial 3))  ; return 3 * 2 * 1 = 6
 (newline)
-(display factorial(4))  ; return 4 * 3 * 2 * 1 = 24
+(display (factorial 4))  ; return 4 * 3 * 2 * 1 = 24
 (exit)
