@@ -1,3 +1,4 @@
+(load "io.scm")
 ; n! = n * (n-1) * (n-2) * ... * 1
 
 (define factorial (lambda (n)
@@ -15,4 +16,9 @@
 (display (factorial 3))  ; return 3 * 2 * 1 = 6
 (newline)
 (display (factorial 4))  ; return 4 * 3 * 2 * 1 = 24
+(newline)
+(display "Enter the number: ")
+(define n (getline))
+(display (factorial n))
+(newline)
 (exit)
