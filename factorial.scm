@@ -19,6 +19,6 @@
 (newline)
 (display "Enter the number: ")
 (define n (getline))
-(display (factorial n))
+(display (factorial (string->number n)))
 (newline)
 (exit)
