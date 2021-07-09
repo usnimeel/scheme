@@ -23,15 +23,16 @@
 )
 
 ;test empty list
-(reverser `())
+(display (reverser `()))
 (newline)
 ;test list with single value
-(reverser `(1))
+(display (reverser `(1)))
 (newline)
 ;test list
-(reverser `(1 2 3 4))
+(display (reverser `(1 2 3 4)))
 (newline)
+(display "Enter the numbers: ")
 (define input-lst (getlist))
-(reverser input-lst)
+(display (reverser input-lst))
 (newline)
 (exit)
