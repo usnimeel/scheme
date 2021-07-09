@@ -4,7 +4,10 @@
 (define isPrime (lambda (n)
         (if (< n 2) ; 0 and 1 are not a prime number.
             #f
-            (isPrime-helper n (- n 1))
+            (if (equal? n 2) ; 2 is a prime nunmber.
+                #t
+                (isPrime-helper n (- n 1))
+            )
         )    
     )
 )
