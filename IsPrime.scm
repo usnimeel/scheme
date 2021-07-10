@@ -4,20 +4,17 @@
 (define isPrime (lambda (n)
         (if (< n 2) ; 0 and 1 are not a prime number.
             #f
-            (if (equal? n 2) ; 2 is a prime nunmber.
-                #t
-                (isPrime-helper n (- n 1))
-            )
+            (isPrime-helper n 2)
         )    
     )
 )
 
 (define isPrime-helper (lambda (n d)
-        (if (equal? (remainder n d) 0)
-            #f ; A remainder of n equals zero, which means that there is a divisible value for n.
-            (if (> d 2) ; stopper (until divided by 2)
-                (isPrime-helper n (- d 1))
-                #t ; n has a non-zero remainder until divided by 2.
+        (if (equal? n d) ; stopper (performed until d = n - 1)
+            #t ; n has a non-zero remainder until divided by n - 1.
+            (if (equal? (remainder n d) 0)
+                #f ; A remainder of n equals zero, which means that there is a divisible value for n.
+                (isPrime-helper n (+ d 1)) ; ++d
             )
         )
     )
