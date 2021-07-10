@@ -80,6 +80,86 @@
   )
 )
 
+; insert a BST to find size
+; params: root: root of BST
+; return: a size of BST
+(define get-bst-size (lambda (root)
+        (get-bst-size-helper root 0)             
+    )
+)
+
+; recursive helper used to iterate over the list and find size from BST
+; params: root: root of BST
+;         size: counted number from recursion
+; return: a size
+(define get-bst-size-helper (lambda (root size)
+        (if (null? root)
+            size
+            (let ((left (car (cdr root))) (right (car (cdr (cdr root)))))               
+                (+ (get-bst-size-helper left 1) (get-bst-size-helper right 1)) 
+            )      
+        )                         
+    )
+)
+
+; insert a BST to find height
+; params: root: root of BST
+; return: a height of BST
+(define get-bst-height (lambda (root)
+        (get-bst-height-helper root 0)             
+    )
+)
+
+; recursive helper used to iterate over the list and find height from BST
+; params: root: root of BST
+;         height: counted number from recursion
+; return: a height
+(define get-bst-height-helper (lambda (root height)
+        (if (null? root)
+            height ; base case return height
+            (let ((left (car (cdr root))) (right (car (cdr (cdr root))))) ; computed left and right root
+                (max (get-bst-height-helper left (+ height 1)) ; recurse left and height++
+                    (get-bst-height-helper right (+ height 1)) ; recurse right and height++
+                )                                              ; find max height on tree from recursion
+            )
+        )              
+    )
+)
+
+; Run tests on BST and display size
+; params: none
+; return: none
+(define test-size (lambda ()
+        (display "Test get-bst-size")
+        (newline)
+        (display (get-bst-size (load-bst '())))
+        (newline)
+        (display (get-bst-size (load-bst '("Me"))))
+        (newline)
+        (display (get-bst-size (load-bst '("Me" "How" "You" "Tau" "Jade" "Awesome" "Good"))))
+        (newline)
+        (display (get-bst-size (load-bst '("Me" "How" "You" "Tau" "Jade" "Awesome" "Zoo"))))
+        (newline)               
+    )
+)
+
+; Run tests on BST and display heights
+; params: none
+; return: none
+(define test-height (lambda ()
+        (display "Test get-bst-height")
+        (newline)
+        (display (get-bst-height (load-bst '())))
+        (newline)
+        (display (get-bst-height (load-bst '("Me"))))
+        (newline)
+        (display (get-bst-height (load-bst '("Me" "How" "You" "Tau" "Jade" "Awesome" "Good"))))
+        (newline)
+        (display (get-bst-height (load-bst '("Me" "How" "You" "Tau" "Jade" "Awesome" "Zoo"))))
+        (newline)               
+    )
+)
+
 ; Run tests on BST and display results
 ; params: none
 ; return: none
@@ -107,4 +187,6 @@
 )
 
 (testme)
+(test-size)
+(test-height)
 (exit)
