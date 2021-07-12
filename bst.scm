@@ -84,7 +84,7 @@
 ; params: root: root of BST
 ; return: a size of BST
 (define get-bst-size (lambda (root)
-        (get-bst-size-helper root 0)             
+        (- (get-bst-size-helper root 0) 1)           
     )
 )
 
@@ -96,7 +96,7 @@
         (if (null? root)
             size
             (let ((left (car (cdr root))) (right (car (cdr (cdr root)))))               
-                (+ (get-bst-size-helper left 1) (get-bst-size-helper right 1)) 
+                (+ (get-bst-size-helper left 1) (get-bst-size-helper right 1)) ; sum left recursion and right recursion
             )      
         )                         
     )
