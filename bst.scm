@@ -107,6 +107,30 @@
     )
 )
 
+; visit node in the BST by pre order
+; params: T: a BST to be traversed
+;         visitor: function to be called on each value in the BST
+;         partial-result: returned by the last call to visitor function.
+; return: the result of applying the visitor function to each value in the BST in an preorder fashion.
+(define bst-preorder-visitor (lambda (T visitor partial-result)
+(if (null? T)                             ; standard base case (empty root)
+    partial-result                        ;   empty trees have -1 height
+    (let* (
+           (root-val (car T))                               
+           (left (car (cdr T)))                            
+           (right (car (cdr (cdr T))))                     
+           (new-result (visitor root-val partial-result))  ; a result of applying the visitor function to root node
+          )   
+            (append (bst-preorder-visitor right visitor `())         ; append right to left and applying the visitor function to right node recursivly
+                     (bst-preorder-visitor left visitor new-result)  ; applying the visitor function to left node recursivly
+            )
+        )  
+    )                      
+) 
+)
+
+;;;;;;;;;;;;;;;;;; test code goes below ;;;;;;;;;;;;;;;;;;  
+
 ; Run tests on BST and display size
 ; params: none
 ; return: none
@@ -141,6 +165,28 @@
     )
 )
 
+(define test-bst-preorder-visitor (lambda ()
+        (display "test with cons function")
+        (newline)
+        (let ((T (load-bst '())))
+          (display (bst-preorder-visitor T cons `()))       
+          (newline)
+        )
+        (let ((T (load-bst '("Me"))))
+          (display (bst-preorder-visitor T cons `()))     
+          (newline)
+        )
+        (let ((T (load-bst '("Me" "How" "You" "Tau" "Jade" "Awesome" "Good")))) 
+          (display (bst-preorder-visitor T cons `()))      
+          (newline)
+         )
+        (let ((T (load-bst '("Me" "How" "You" "Tau" "Jade" "Awesome" "Zoo")))) 
+          (display (bst-preorder-visitor T cons `()))      
+          (newline)
+        )
+    )
+)
+
 ; Run tests on BST and display results
 ; params: none
 ; return: none
@@ -170,6 +216,8 @@
 )
 
 (testme)
-(test-size)
-(test-height)
+(newline)
+;(test-size)
+;(test-height)
+(test-bst-preorder-visitor)
 (exit)
