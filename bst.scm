@@ -84,21 +84,12 @@
 ; params: root: root of BST
 ; return: a size of BST
 (define get-bst-size (lambda (root)
-        (- (get-bst-size-helper root 0) 1)           
-    )
-)
-
-; recursive helper used to iterate over the list and find size from BST
-; params: root: root of BST
-;         size: counted number from recursion
-; return: a size
-(define get-bst-size-helper (lambda (root size)
-        (if (null? root)
-            size
-            (let ((left (car (cdr root))) (right (car (cdr (cdr root)))))               
-                (+ (get-bst-size-helper left 1) (get-bst-size-helper right 1)) ; sum left recursion and right recursion
-            )      
-        )                         
+        (if (null? root)                    ; standard base case (empty root)
+            0                               ;   empty trees have 0 nodes
+            (let ((left (car (cdr root))) (right (car (cdr (cdr root)))))
+              (+ 1 (get-bst-size left) (get-bst-size right))  ; size++ not empty, so count
+            )
+        )
     )
 )
 
@@ -106,23 +97,13 @@
 ; params: root: root of BST
 ; return: a height of BST
 (define get-bst-height (lambda (root)
-        (get-bst-height-helper root 0)             
-    )
-)
-
-; recursive helper used to iterate over the list and find height from BST
-; params: root: root of BST
-;         height: counted number from recursion
-; return: a height
-(define get-bst-height-helper (lambda (root height)
-        (if (null? root)
-            height ; base case return height
-            (let ((left (car (cdr root))) (right (car (cdr (cdr root))))) ; computed left and right root
-                (max (get-bst-height-helper left (+ height 1)) ; recurse left and height++
-                    (get-bst-height-helper right (+ height 1)) ; recurse right and height++
-                )                                              ; find max height on tree from recursion
+        ; assume that we will never start with an empty tree
+        (if (null? root)                  ; standard base case (empty root)
+            -1                            ;   empty trees have -1 height
+            (let ((left (car (cdr root))) (right (car (cdr (cdr root)))))
+               (+ 1 (max (get-bst-height left) (get-bst-height right))) ; height++ recurse left and right and height++
             )
-        )              
+        )
     )
 )
 

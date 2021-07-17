@@ -2,34 +2,15 @@
 
 ; computes a list of the prime factors of a number.
 (define factor (lambda (num)
-        (let ((lst `()))
-            (let ((lst-reverse `()))
-                (reverser-helper (factor-helper num 2 lst) lst-reverse)  
-            ) 
-        )           
-    )
-)
-
-(define factor-helper (lambda (num start lst)
-        (if (> num 1)
-            (if (equal? (remainder num start) 0)
-                (factor-helper (/ num start) start (cons start lst)) ; num / start, start, append start to lst 
-                (factor-helper num (+ start 1) lst) ; start = start + 1 
-            )
-            lst ; return list
-        )
-    )
-)
-
-; get list and empty list
-(define reverser-helper (lambda (lst lst-reverse)
-        (if (equal? lst `())
-            lst-reverse
-            ;store first element to elm
-            ;store rest of elements into list named remain
-            (let ((elm (car lst)) (remain (cdr lst)))
-                (reverser-helper remain (cons elm lst-reverse))
-            ) 
+        (letrec ((factors-helper (lambda (start num)
+                (if (equal? 1 num)                                ; base case num is 1
+                    '()                                             ;   return empty list
+                    (if (equal? 0 (remainder num start))            ; recursive case
+                    (cons start (factors-helper start (/ num start))) ; start divides num
+                    (factors-helper (+ start 1) num)              ;   start not divides num
+                    )
+                ))))
+            (factors-helper 2 num)
         )
     )
 )
