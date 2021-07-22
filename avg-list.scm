@@ -2,7 +2,7 @@
 ; to compute the average of a list
 ; in general if we have the average for n - 1 elements, to computer the average
 ; for n elements, assuming e is the nth element.
-; new partial = ((partial * (n-1)) + e / n
+; new partial = ((partial * (n-1)) + e / n 
 
 (define new-avg (lambda ()
 (let ((n 0.0))

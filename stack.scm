@@ -1,7 +1,7 @@
 ; a stack clouser
 ; push - prepends an object to a list
 ; pop - removes the front of a list and returns it
-; empty - returns true if and only if stack is empty
+; empty - returns true if and only if stack is empty 
 
 (define new-stack (lambda ()
 (let ((stack `()))

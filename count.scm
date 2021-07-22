@@ -1,6 +1,6 @@
 ; wirte a function that resturns a clouser,
 ; which increaments a counter and returnss each time
-; it is called.
+; it is called. 
 
 (define new-counter (lambda ()
 ; clouser
