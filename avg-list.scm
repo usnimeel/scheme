@@ -19,9 +19,9 @@
 ))
 
 (load "list-visitor.scm")
-(list-visitor `(7) (new-avg))       ; 7
-(list-visitor `(7 13) (new-avg))    ; 10
-(list-visitor `(7 14 9) (new-avg))  ; 10
-(list-visitor `(1 2 3 4) (new-avg)) ; 2.5
+(list-visitor `(7) (new-avg) 0)       ; 7
+(list-visitor `(7 13) (new-avg) 0)    ; 10
+(list-visitor `(7 14 9) (new-avg) 0)  ; 10
+(list-visitor `(1 2 3 4) (new-avg) 0) ; 2.5
 
 (exit)
