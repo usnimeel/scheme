@@ -15,9 +15,4 @@
 ))
 
 (define sql-test (new-sqrt-iterator `(1 2 3 4)))
-(sql-test)
-(sql-test)
-(sql-test)
-(sql-test)
-(sql-test)
-(exit)
+
